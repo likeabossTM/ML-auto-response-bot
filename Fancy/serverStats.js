@@ -1,4 +1,4 @@
-const osutils = require('os-utils');
+const osutils = require('os-utils');//esto ayuda a obtener las estadisticas genericas del sistema en consola o bien en variables locales
 
 //monitorizando el comportamiento del cpu por consola
 //mostrara estadisticas para geeks
