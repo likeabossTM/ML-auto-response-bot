@@ -1,0 +1,4 @@
+
+{
+  "ignore": ["*./path-of-the-files/the-file.json", "/folder-you-wish/*"]
+}
