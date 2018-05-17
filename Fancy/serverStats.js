@@ -75,3 +75,5 @@ exports.estadisticasF = function ServerStats() {
   MlibreF();
   tiempoEncendido();
 }
+
+//the language of the comments is spanish
