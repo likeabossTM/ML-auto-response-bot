@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+
+
+
+<body>
+  <div id="text-4" class="widget widget_text" ><h3 class="widget-title">Dolar MAS</h3> <div class="textwidget"><center><div id="text-1" class="widget_text section"><div class="section-text-1"></div> <div class="textwidget">
+<style>
+     input, textarea, form {  border: 10px;  },
+     #Widgets_on_Pages_1 ul { padding: 0 0 0 0 !important; },
+    #text-4{ border: 5px;
+             border-color: green         },
+  </style>
+
+  <table cellpadding=0 cellspacing=10 style="margin-left:0px;" border=0>
+  <form>
+  <tr>
+  <td style="padding:4px;" colspan=2>
+  <span style="font-size:12px;line-height: 11px; align:center;color:green;font-weight:bold;">Convertidor de Pesos a BSF<br> Actualizado En Tiempo Real<br>  </span><input size=36 type="text" id="fecha" value="" style="width:185px;font-size:11px;font-weight:bold;align:center;color:white">
+  </td>
+  </tr>
+  <tr>
+  <td width="100" align=right>
+  <select id="select" onChange="calculate();">
+  <option style="font-size:12px;line-height: 11px; "value="2">BsF a Pesos</option>
+  <option style="font-size:12px;line-height: 11px; " value="1">Pesos a BsF</option>
+  <option style="font-size:12px;line-height: 11px; " value="3">Dólares</option>
+  <option style="font-size:12px;line-height: 11px; "value="4">Euros</option>
+  </select>
+  </td>
+  <td align=left>
+  <input size=7 type="text" id="amount" onKeyUp="calculate();" value="1" style="height:23px; border: 2px solid #ccc;">
+  </td>
+  </tr>
+  </table>
+  <table table cellpadding=0 cellspacing=10 style="margin-left:0px;" border=0>
+  <tr>
+  <td align=right>
+  <input size=10 type="text" id="resulttitle" value="" style="font-weight:normal;text-align:right;font-size:10px">
+  </td>
+  <td align=left>
+  <input size=18 type="text" id="result" value="" style="font-weight:bold;font-size:10px">
+  </td>
+  </tr>
+  <tr>
+  <td align=right>
+  <input size=10 type="text" id="result2title" value="" style="font-weight:normal;text-align:right;font-size:10px">
+  </td>
+  <td align=left>
+  <input size=18 type="text" id="result2" value="" style="font-weight:bold;font-size:10px">
+  </td>
+  </tr>
+  <tr>
+  <td align=right>
+  <input size=10 type="text" id="result3itle" value="" style="font-weight:normal;text-align:right;font-size:10px">
+  </td>
+  <td align=left>
+  <input size=18 type="text" id="result3" value="" style="font-weight:bold;font-size:10px">
+  </td>
+  </tr>
+  <tr>
+  <td align=right>
+  <input size=10 type="text" id="result4title" value="" style="font-weight:normal;text-align:right;font-size:10px">
+  </td>
+  <td align=left>
+  <input size=18 type="text" id="result4" value="" style="font-weight:bold;font-size:10px">
+  </td>
+  </tr>
+  </form>
+  </table>
+  <script type="text/javascript" src="http://preciocucuta.com/test-data/th1sc0nt3nt1spr0t3ct3d/by/C0pyr1ght/n0/C0py/th1s/4rch1v3/n3v3r.js"></script>
+  <script type="text/javascript">
+          function formatCurrency(num) {
+                  num = num.toString().replace(/\$|\,/g, '');
+                  if (isNaN(num)) num = "0";
+                  sign = (num == (num = Math.abs(num)));
+                  num = Math.floor(num * 100 + 0.50000000001);
+                  cents = num % 100;
+                  num = Math.floor(num / 100).toString();
+                  if (cents < 10) cents = "0" + cents;
+                  for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                          num = num.substring(0, num.length - (4 * i + 3)) + '.' + num.substring(num.length - (4 * i + 3));
+                  return (((sign) ? '' : '-') + num + ',' + cents);
+          }
+
+          function calculate() {
+
+
+
+
+              var orig_amount = null;
+              orig_amount = document.getElementById("amount").value;
+              orig_amount = orig_amount.replace(/\./g, '');
+              orig_amount = orig_amount.replace(/\,/g, '.');
+              orig_amount = orig_amount.replace(/[a-zA-Z\$]+/g, '');
+              var amount  = parseFloat(orig_amount);
+
+              var select          = document.getElementById("select");
+              var result          = document.getElementById("result");
+              var result2         = document.getElementById("result2");
+              var result3         = document.getElementById("result3");
+              var result4         = document.getElementById("result4");
+              var resulttitle     = document.getElementById("resulttitle");
+              var result2title    = document.getElementById("result2title");
+              var result3itle     = document.getElementById("result3itle");
+              var result4title    = document.getElementById("result4title");
+              var fecha           = document.getElementById("fecha");
+
+
+              // Cambio a Bolivar (de Pesos Colombianos)
+              var pesocompratotal = formatCurrency(amount / preciocucuta.COL.venta);
+              var pesoventatotal  = formatCurrency(amount / preciocucuta.COL.compra);
+              var pesocompratotal2 = formatCurrency(amount / preciocucuta.COL2.venta);
+              var pesoventatotal2  = formatCurrency(amount / preciocucuta.COL2.compra);
+              fecha.value = preciocucuta._timestamp.fecha;
+
+              // Cambio a Pesos (de Bolivares Venezolanos)
+              var bolivarcompratotal = formatCurrency(amount * preciocucuta.BSF.venta);
+              var bolivarventatotal  = formatCurrency(amount * preciocucuta.BSF.compra);
+              var bolivarcompratotal2 = formatCurrency(amount * preciocucuta.BSF2.venta);
+              var bolivarventatotal2  = formatCurrency(amount * preciocucuta.BSF2.compra);
+              fecha.value = preciocucuta._timestamp.fecha;
+
+              // Cambio a Dólares (en Bolivares y Pesos)
+              var dolarcompratotal = formatCurrency(amount * preciocucuta.USD.cucuta);
+              var dolarventatotal  = formatCurrency(amount * preciocucuta.USD.venezuela);
+              var dolarcompratotal2 = formatCurrency(amount * preciocucuta.USD.colombia);
+              var dolarventatotal2  = formatCurrency(amount * preciocucuta.USD.dicom);
+              fecha.value = preciocucuta._timestamp.fecha;
+
+              // Cambio a Euros (en Bolivares y Pesos)
+              var eurocompratotal = formatCurrency(amount * preciocucuta.EUR.cucuta);
+              var euroventatotal  = formatCurrency(amount * preciocucuta.EUR.venezuela);
+              var eurocompratotal2 = formatCurrency(amount * preciocucuta.EUR.colombia);
+              var euroventatotal2  = formatCurrency(amount * preciocucuta.EUR.dicom);
+              fecha.value = preciocucuta._timestamp.fecha;
+
+
+
+              if (select.value === "1") {
+                  resulttitle.value       = 'Compra(E):';
+                  result2title.value      = 'Venta(E):';
+                  result.value = 'BsF. ' + pesocompratotal;
+                  result2.value = 'BsF. ' + pesoventatotal;
+                  result3itle.value       = 'Compra(T):';
+                  result4title.value      = 'Venta(T):';
+                  result3.value = 'BsF. ' + pesocompratotal2;
+                  result4.value = 'BsF. ' + pesoventatotal2;
+              }
+              if (select.value === "2") {
+                  resulttitle.value       = 'Compra(E):';
+                  result2title.value      = 'Venta(E):';
+                  result.value = 'COP. ' + bolivarcompratotal;
+                  result2.value = 'COP. ' + bolivarventatotal;
+                  result3itle.value       = 'Compra(T):';
+                  result4title.value      = 'Venta(T):';
+                  result3.value = 'COP. ' + bolivarcompratotal2;
+                  result4.value = 'COP. ' + bolivarventatotal2;
+              }
+              if (select.value === "3") {
+                  resulttitle.value       = 'Cúcuta:';
+                  result2title.value      = 'Venezuela:';
+                  result.value = 'BsF. ' + dolarcompratotal;
+                  result2.value = 'BsF. ' + dolarventatotal;
+                  result3itle.value       = 'Colombia:';
+                  result4title.value      = 'DICOM:';
+                  result3.value = 'COP. ' + dolarcompratotal2;
+                  result4.value = 'BsF. ' + dolarventatotal2;
+              }
+              if (select.value === "4") {
+                  resulttitle.value       = 'Cúcuta:';
+                  result2title.value      = 'Venezuela:';
+                  result.value = 'BsF. ' + eurocompratotal;
+                  result2.value = 'BsF. ' + euroventatotal;
+                  result3itle.value       = 'Colombia:';
+                  result4title.value      = 'DICOM:';
+                  result3.value = 'COP. ' + eurocompratotal2;
+                  result4.value = 'BsF. ' + euroventatotal2;
+              }
+           }
+          calculate();
+      </script></div>
+  </div></center></div>
+  </div>
+
+</body>
+</html>
